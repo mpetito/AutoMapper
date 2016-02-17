@@ -67,7 +67,7 @@ namespace AutoMapper.QueryableExtensions.Impl
 
         private object InvokeSourceQuery(Type sourceResultType, Expression sourceExpression)
         {
-            var result = IsProjection<TSource>(sourceResultType)
+            var result = sourceResultType == null || IsProjection<TSource>(sourceResultType)
                 ? _dataSource.Provider.CreateQuery(sourceExpression)
                 : _dataSource.Provider.Execute(sourceExpression);
             return result;
