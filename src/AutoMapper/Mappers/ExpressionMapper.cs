@@ -288,7 +288,7 @@
 
             private PropertyMap PropertyMap(MemberExpression node)
             {
-                if (node.Member.IsStatic())
+                if (_typeMap == null || node.Member.IsStatic())
                     return null;
 
                 var memberAccessor = node.Member.ToMemberAccessor();
