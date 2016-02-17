@@ -138,7 +138,7 @@ namespace AutoMapper.QueryableExtensions
         {
             var bindings = new List<MemberBinding>();
 
-            foreach (var propertyMap in typeMap.GetPropertyMaps().Where(pm => pm.CanResolveValue()))
+            foreach (var propertyMap in typeMap.GetPropertyMaps().Where(pm => pm.CanResolveValue()).OrderBy(pm => pm.GetMappingOrder()).ThenBy(pm => pm.DestinationProperty.Name))
             {
                 var result = ResolveExpression(propertyMap, request.SourceType, instanceParameter);
 
